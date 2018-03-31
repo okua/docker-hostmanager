@@ -129,13 +129,14 @@ class Synchronizer
                 $ip = $conf['IPAddress'];
 
                 $aliases = isset($conf['Aliases']) && is_array($conf['Aliases']) ? $conf['Aliases'] : [];
-                $aliases[] = substr($container['Name'], 1);
-
                 $hosts = [];
                 foreach (array_unique($aliases) as $alias) {
-                    $hosts[] = $alias.'.'.$networkName;
+                    if(strpos($alias,'.') === false){
+                        $hosts[] = $alias.'.'.$networkName;
+                    } else{
+                        $hosts[] = $alias;
+                    }
                 }
-
                 $lines[$ip] = sprintf('%s%s', isset($lines[$ip]) ? $lines[$ip].' ' : '', implode(' ', $hosts));
             }
         }
