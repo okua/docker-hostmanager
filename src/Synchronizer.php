@@ -132,7 +132,6 @@ class Synchronizer
  
                 $hosts = [];
                 foreach (array_unique($aliases) as $alias) {
-                    var_dump(strpos($alias,'.'));
                     if(strpos($alias,'.') === false){
                         $hosts[] = $alias.'.'.$networkName;
                     } else{
