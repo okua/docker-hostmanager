@@ -129,7 +129,6 @@ class Synchronizer
                 $ip = $conf['IPAddress'];
 
                 $aliases = isset($conf['Aliases']) && is_array($conf['Aliases']) ? $conf['Aliases'] : [];
- 
                 $hosts = [];
                 foreach (array_unique($aliases) as $alias) {
                     if(strpos($alias,'.') === false){
@@ -157,7 +156,6 @@ class Synchronizer
     private function getContainerHosts($container)
     {
         $hosts = [substr($container['Name'], 1).$this->tld];
-        var_dump($container['Config']['Env']);
         if (isset($container['Config']['Env']) && is_array($container['Config']['Env'])) {
             $env = $container['Config']['Env'];
             foreach (preg_grep('/DOMAIN_NAME=/', $env) as $row) {
